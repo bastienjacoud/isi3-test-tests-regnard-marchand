@@ -1,3 +1,4 @@
+import java.math.BigDecimal;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -35,7 +36,7 @@ class VectorTest {
         firstVector = new Vector(1, 2);
         secondVector = new Vector(3, 3);
 
-        assertEquals(-3, firstVector.cross(secondVector));
+        assertEquals(new BigDecimal(-3), firstVector.cross(secondVector));
     }
 
     @Test
@@ -44,6 +45,6 @@ class VectorTest {
         firstVector = new Vector(-11, -2);
         secondVector = new Vector(-4, 3);
 
-        assertEquals(-33-8, firstVector.cross(secondVector));
+        assertEquals(new BigDecimal(-41), firstVector.cross(secondVector));
     }
 }
