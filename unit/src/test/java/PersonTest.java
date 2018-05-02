@@ -1,22 +1,33 @@
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.mock;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.mockito.Mockito;
 
 @DisplayName("Person")
 class PersonTest {
 
-    private Person person;
+	private Person person;
+	private Vector mockInitialPosition;
 
+	@BeforeEach
+	void setUp() {
+		mockInitialPosition = mock(Vector.class);
+		person = new Person("John Doe", mockInitialPosition);
+	}
 
-    @Test
-    @DisplayName("should call vector add function")
-    void move() {
-        person = new Person("John Doe", new Vector(10, 20));
+	@Test
+	@DisplayName("should call vector add function")
+	void move() {
+		Vector mockParameter = mock(Vector.class);
+		Vector mockResult = mock(Vector.class);
+		Mockito.when(mockInitialPosition.add(mockParameter)).thenReturn(mockResult);
 
-        person.move(new Vector(-5, 20));
-        person.move(new Vector(-3, -4));
+		person.move(mockParameter);
 
-        assertEquals(new Vector(2, 36), person.getPosition());
-    }
+		assertEquals(mockResult, person.getPosition());
+		Mockito.verify(mockInitialPosition).add(mockParameter);
+	}
 }
