@@ -4,9 +4,7 @@ import java.util.Objects;
 class Vector {
 
 	private BigDecimal xAxis;
-
 	private BigDecimal yAxis;
-
 
 	public Vector(BigDecimal xAxis, BigDecimal yAxis) {
 		this.xAxis = xAxis;
@@ -21,20 +19,12 @@ class Vector {
 		return xAxis;
 	}
 
-	public void setxAxis(BigDecimal xAxis) {
-		this.xAxis = xAxis;
-	}
-
 	public BigDecimal getyAxis() {
 		return yAxis;
 	}
 
-	public void setyAxis(BigDecimal yAxis) {
-		this.yAxis = yAxis;
-	}
-
 	public Vector add(Vector vector) {
-		return new Vector(xAxis.add(vector.xAxis), yAxis.add(vector.yAxis));
+		return new Vector(this.getxAxis().add(vector.getxAxis()), this.getyAxis().add(vector.getyAxis()));
 	}
 
 	/**
@@ -44,8 +34,8 @@ class Vector {
 	 * @return x1*y2 - x2*y1
 	 */
 	public BigDecimal cross(Vector vector) {
-		BigDecimal firstPart = this.xAxis.multiply(vector.yAxis);
-		BigDecimal secondPart = vector.xAxis.multiply(this.yAxis);
+		BigDecimal firstPart = this.getxAxis().multiply(vector.getyAxis());
+		BigDecimal secondPart = vector.getxAxis().multiply(this.getyAxis());
 
 		return firstPart.subtract(secondPart);
 	}
@@ -59,12 +49,12 @@ class Vector {
 			return false;
 		}
 		Vector vector = (Vector) o;
-		return Objects.equals(xAxis, vector.xAxis) &&
-			Objects.equals(yAxis, vector.yAxis);
+		return Objects.equals(this.getxAxis(), vector.getxAxis()) &&
+			Objects.equals(getyAxis(), vector.getyAxis());
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(xAxis, yAxis);
+		return Objects.hash(getxAxis(), getyAxis());
 	}
 }

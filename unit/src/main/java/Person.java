@@ -15,16 +15,8 @@ public class Person {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public Vector getPosition() {
 		return position;
-	}
-
-	public void setPosition(Vector position) {
-		this.position = position;
 	}
 
 	public void move(Vector vector) {
@@ -34,8 +26,8 @@ public class Person {
 	@Override
 	public String toString() {
 		return "Person{" +
-			"name='" + name + '\'' +
-			", position=" + position +
+			"name='" + getName() + '\'' +
+			", position=" + getPosition() +
 			'}';
 	}
 
